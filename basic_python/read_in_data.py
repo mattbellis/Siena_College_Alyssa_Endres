@@ -3,7 +3,8 @@ import matplotlib.pylab as plt
 
 import sys
 
-infile = open(sys.argv[1])
+# infile = open(sys.argv[1])
+infile = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\sample_pop1.dat")
 
 vals = (np.array(infile.read().split())).astype(float)
 nentries = len(vals)
