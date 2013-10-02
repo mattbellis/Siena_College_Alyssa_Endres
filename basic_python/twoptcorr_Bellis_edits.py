@@ -4,8 +4,58 @@ import math
 import numpy as np
 import matplotlib.pylab as plt
 
+################################################################################
+# Distances calculation
+################################################################################
+def distance(xpts0,ypts0,xpts1,ypts1,same='False'):
+
+    npts0 = len(xpts0)
+    npts1 = len(xpts1)
+
+    N = 0
+    if same is True:
+        N=(npts0**2-npts0)/2
+    else:
+        N=npts0*npts1
+
+    distances=np.zeros(N)    
+
+    # Passed in the same arrays
+    if same is True:
+        i = 0
+        index_start = 0
+        index_end = npts-1
+        for i in range(0,len(x)):
+
+            dist_new = np.sqrt((x0[i] - x1[i+1:])**2 + (y0[i] - y1[i+1:])**2)
+            #print len(dist_new)
+            #print index_start,index_end
+            distances[index_start:index_end] = dist_new[:]
+            i += 1
+
+            index_start += (npts-i)
+            index_end = index_start + (npts-(i+1))
+
+        print "len: %d" % (len(distances))
+
+    # Two arrays are different
+    else:
+        for i in range(0,len(x)):
+
+            dist_new = np.sqrt((x0[i] - x1)**2 + (y[i] - y1)**2)
+            
+            index = i*npts1
+            index = (i+1)*npts1
+            distances[index:index_end] = dist_new
+
+        print "len: %d" % (len(distances))
+
+
+
 #infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\sample_pop1.dat")
 infiled = open("../data/sample_pop1.dat")
+#infiler = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\sample_pop0.dat")
+infiler = open("../data/sample_pop0.dat")
 
 vals = (np.array(infiled.read().split())).astype(float)
 nentries = len(vals)
@@ -16,29 +66,6 @@ yd = vals[index+1]
 
 nptsd = len(xd)
         
-def distance():
-    #distances=[]
-    N=(nptsd**2-nptsd)/2
-    distances=np.zeros(N)    
-    i=0
-    j=0
-    count=0
-    for i in range (0,nptsd):
-        for j in range (i+1,nptsd):
-            x0=xd[i]
-            y0=yd[i]
-            x1=xd[j]
-            y1=yd[j]
-    
-            sq1 = (x1-x0)**2
-            sq2 = (y1-y0)**2
-            dist = math.sqrt(sq1 + sq2)
-            #distances.append(dist)
-            distances[count]=dist
-            count+=1            
-            j+=1
-        i+=1       
-    return distances        
     #plt.hist(distances,bins=100,range=(0,100))
     #plt.show()
 distances=distance()
@@ -50,8 +77,6 @@ DD = dd[0] / float(N)
 
 ###############################################################################
 
-#infiler = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\sample_pop0.dat")
-infiler = open("../data/sample_pop0.dat")
 
 vals = (np.array(infiler.read().split())).astype(float)
 nentries = len(vals)
