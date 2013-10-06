@@ -29,14 +29,10 @@ def distance(x0,y0,x1,y1,same=False):
         index_end = npts1
 
     # Passed in the same arrays
-    print "same",same
-    print N
     if same is True:
-        print "here"
         i = 0
         index_start = 0
         index_end = npts1-1
-        print "HERE"
         for i in range(0,npts0):
 
             dist_new = np.sqrt((x0[i] - x1[i+1:])**2 + (y0[i] - y1[i+1:])**2)
@@ -106,40 +102,43 @@ plt.figure(figsize=(15,5))
 print "Starting DD........."
 distances=distance(xd,yd,xd,yd,same=True)
 plt.subplot(1,3,1)
-dd = plt.hist(distances,bins=25,range=(0,1.5))
-N=(nptsd**2-nptsd)/2
+dd = plt.hist(distances,bins=100,range=(0,1.5))
+plt.xlim(0,1.5)
+N=((nptsd**2)-nptsd)/2.0
+print "DD norm: ",N
 DD = dd[0] / float(N)
 
 print "Starting RR........."
 distances=distance(xr,yr,xr,yr,same=True)
 plt.subplot(1,3,2)
-rr = plt.hist(distances,bins=25,range=(0,1.5))
-N=(nptsr**2-nptsr)/2
+rr = plt.hist(distances,bins=100,range=(0,1.5))
+plt.xlim(0,1.5)
+N=((nptsr**2)-nptsr)/2.0
+print "RR norm: ",N
 RR = rr[0] / float(N)
 
 
 print "Starting DR........."
 distances=distance(xd,yd,xr,yr,same=False)
 plt.subplot(1,3,3)
-dr = plt.hist(distances,bins=25,range=(0,1.5))
+plt.xlim(0,1.5)
+dr = plt.hist(distances,bins=100,range=(0,1.5))
 N=nptsr*nptsd
+print "DR norm: ",N
 DR = dr[0] / float(N)
 
-
-
-
-
-
-
-
-W = (DD-2*DR+RR)/DD.astype('float')
+W = (DD-(2*DR)+RR)/RR.astype('float')
 print W
 
-x=dd[1][:-1] +.015/2 #shifts to center of 
+x=dd[1][:-1] +(dd[1][1]-dd[1][0])/2.0 #shifts to center of 
 print len(W),len(x)
+
+i = 10
+print dd[1][i],DD[i],RR[i],DR[i],W[i]
 
 plt.figure()
 plt.plot(x,W,'ko')
+plt.ylim(-5,15)
 
 plt.show()
 
