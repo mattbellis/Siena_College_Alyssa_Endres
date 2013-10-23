@@ -5,7 +5,8 @@ import math
 import numpy as np
 import matplotlib.pylab as plt
 
-infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\wechsler_gals_100k.dat")
+#infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\wechsler_gals_100k.dat")
+infiled = open("../data/wechsler_gals_100k.dat")
 
 vals = (np.array(infiled.read().split())).astype(float)
 nentries = len(vals)
@@ -30,7 +31,8 @@ nfilemax=npts-nlines
 
 # ourput file- z, r, d
 for j in range (0,91):
-    filename = 'C:\Users\Alyssa\Documents\Python Scripts\wechsler'+'output_'+str(j)+'.dat'
+    #filename = 'C:\Users\Alyssa\Documents\Python Scripts\wechsler'+'output_'+str(j)+'.dat'
+    filename = 'output_wechsler'+'output_'+str(j)+'.dat'
     output=open(filename,'w')
     for i in range(nlines):    
         index=start_increment*j+i    
