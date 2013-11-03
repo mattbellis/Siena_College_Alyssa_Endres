@@ -44,7 +44,7 @@ def distance():
 distances=distance()
 plt.figure(figsize=(15,5))
 plt.subplot(1,3,1)
-dd = plt.hist(distances,bins=25,range=(0,1.5))
+dd = plt.hist(distances,bins=100,range=(0,1.5))
 N=(nptsd**2-nptsd)/2
 DD = dd[0] / float(N)
 
@@ -89,7 +89,7 @@ def distance():
     #plt.show()
 distances=distance()
 plt.subplot(1,3,2)
-rr = plt.hist(distances,bins=25,range=(0,1.5))
+rr = plt.hist(distances,bins=100,range=(0,1.5))
 N=(nptsr**2-nptsr)/2
 RR = rr[0] / float(N)
 
@@ -124,7 +124,7 @@ def distance():
     #plt.show()
 distances=distance()
 plt.subplot(1,3,3)
-dr = plt.hist(distances,bins=25,range=(0,1.5))
+dr = plt.hist(distances,bins=100,range=(0,1.5))
 N=nptsr*nptsd
 DR = dr[0] / float(N)
 
