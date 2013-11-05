@@ -25,7 +25,10 @@ z_sort = z[sorted_indices]
 # plot histogram of z values
 print z[0:100]
 print z[-100:]
-plt.hist(z,bins=50)
+plt.hist(z,bins=50,range=(0.0,0.4))
+cut_index0 = z>0.1
+cut_index1 = z<0.2
+plt.hist(z[cut_index0*cut_index1],bins=50,range=(0.0,0.4))
 #plt.xlim(0,5)
 plt.title("Sample Pop 0 y")
 plt.show()
