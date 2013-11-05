@@ -43,11 +43,13 @@ while end_line <= ngalaxies + increment:
     print j
 
     output=open(filename,'w')
+    output.write('%d\n'%(nlines_per_file))
     for i in range(nlines_per_file):    
         index=increment*j+i    
         if index > (npts-1):
             break
-        output.write('%6.5e %6.5e %6.5e \n'%(r[sorted_indices[index]],d[sorted_indices[index]], z[sorted_indices[index]]))
+        #output.write('%6.5e %6.5e %6.5e \n'%(r[sorted_indices[index]],d[sorted_indices[index]], z[sorted_indices[index]]))
+        output.write('%6.5e %6.5e\n'%(r[sorted_indices[index]],d[sorted_indices[index]]))
     output.close()
         
     end_line += increment

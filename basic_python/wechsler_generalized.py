@@ -4,7 +4,8 @@
 import numpy as np
 import matplotlib.pylab as plt
 
-infiled = open("C:\Users\Alyssa\Dropbox\Astro data\Wechsler data\wechsler_gals.cat")
+#infiled = open("C:\Users\Alyssa\Dropbox\Astro data\Wechsler data\wechsler_gals.cat")
+infiled = open("/data/Astronomy/catalogs/Wechsler//wechsler_gals.cat")
 
 
 vals = (np.array(infiled.read().split())).astype(float)
@@ -17,12 +18,15 @@ z = vals[index+2]
 
 # sort galxies by z, return indices
 sorted_indices = np.argsort(z)
-r_sort = r[sorted_indices[index]]
-d_sort = d[sorted_indices[index]]
-z_sort = z[sorted_indices[index]]
+r_sort = r[sorted_indices]
+d_sort = d[sorted_indices]
+z_sort = z[sorted_indices]
 
 # plot histogram of z values
-plt.hist(z,bins=20,range=(0,5))
+print z[0:100]
+print z[-100:]
+plt.hist(z,bins=50)
+#plt.xlim(0,5)
 plt.title("Sample Pop 0 y")
 plt.show()
 
