@@ -16,58 +16,69 @@ r = vals[index]
 d = vals[index+1]
 z = vals[index+2]
 
-<<<<<<< HEAD
-# plot histogram of all z values
-plt.hist (z, bins=50, range=(0, 0.35))
-plt.title ("range of z")
-plt.show ()
-=======
-# sort galxies by z, return indices
-sorted_indices = np.argsort(z)
-r_sort = r[sorted_indices]
-d_sort = d[sorted_indices]
-z_sort = z[sorted_indices]
-
 # plot histogram of z values
 print z[0:100]
 print z[-100:]
-plt.hist(z,bins=50,range=(0.0,0.4))
-cut_index0 = z>0.1
-cut_index1 = z<0.2
-plt.hist(z[cut_index0*cut_index1],bins=50,range=(0.0,0.4))
-#plt.xlim(0,5)
-plt.title("Sample Pop 0 y")
-plt.show()
+
+z_width = 0.01
+
+z_min = 0.0
+z_max = 0.35
+
+nslices = int((z_max-z_min)/z_width)
+
+for i in range(0,nslices):
+
+    print "nslices: ",i,nslices
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
 
 
-## IndexError: index 10895781 is out of bounds for size 10895780
->>>>>>> 79a2b17093c51af19ebafb9bb76527a24e7fcc24
+    ax.hist (z, bins=nslices, range=(z_min,z_max))
+    #ax.set_title ("range of z")
+
+    cut_index0 = z>z_min + i*z_width
+    cut_index1 = z<z_min + i*z_width + 0.03
+    ax.hist(z[cut_index0*cut_index1],bins=nslices,range=(z_min,z_max))
+
+    title = "z=%4.2f-%4.2f" % (z_min + i*z_width,z_min + (i+1)*z_width)
+    ax.set_title(title)
+    ax.set_xlabel("z (redshift)")
+    #plt.show()
+
+    rdum = r[cut_index0*cut_index1]
+    ddum = d[cut_index0*cut_index1]
+
+    filename = "galaxy_slices/output_wechsler_%04d.dat" % (i)
+
+    output=open(filename,'w')
+    output.write('%d\n'%(len(rdum)))
+
+    for ir,idec in zip(rdum,ddum):
+        output.write('%6.5e %6.5e\n'%(ir,idec))
+    output.close()
 
 
-#npts = len(r)
-## 10,895,780
-#
-## lines per file
-#nlines = 100000
-#start_increment = 10000
-#nfiles = npts / (1.*start_increment)
-#nfilemax = npts - nlines
 
 
+
+'''
 spread = 0.1
 step = 0.05
 
 # plots histogram for some z range
 # 0-10,000; 1,000-11,000; 2,000-12,000
 for j in range (0, 0.35/step):
-        start = step * j
-        end = start + spread
-        plt.hist (z[start < z <end], bins=25, range=(0, 0.35))
-        plt.show ()
-        
-        
-       
-        
+start = step * j
+end = start + spread
+plt.hist (z[start < z <end], bins=25, range=(0, 0.35))
+plt.show ()
 
-        
-                
+
+
+'''
+
+
+
+
