@@ -58,27 +58,3 @@ for i in range(0,nslices):
     for ir,idec in zip(rdum,ddum):
         output.write('%6.5e %6.5e\n'%(ir,idec))
     output.close()
-
-
-
-
-
-'''
-spread = 0.1
-step = 0.05
-
-# plots histogram for some z range
-# 0-10,000; 1,000-11,000; 2,000-12,000
-for j in range (0, 0.35/step):
-start = step * j
-end = start + spread
-plt.hist (z[start < z <end], bins=25, range=(0, 0.35))
-plt.show ()
-
-
-
-'''
-
-
-
-
