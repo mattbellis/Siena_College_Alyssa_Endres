@@ -5,7 +5,7 @@ import matplotlib.pylab as plt
 from matplotlib import pyplot
 
 # data-data
-infiled = open("log10binning_GPU_10k_data_data_arcmin.dat")
+infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\log10binning_GPU_10k_data_data_arcmin.dat")
 vals = (np.array(infiled.read().split())).astype(float)
 nentries = len(vals)
 ncols = 3
@@ -18,7 +18,7 @@ dd_th_avg = (dd_th_hi + dd_th_lo) / 2
 
 
 # data-flat
-infiled = open("log10binning_GPU_10k_data_flat_arcmin.dat")
+infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\log10binning_GPU_10k_data_flat_arcmin.dat")
 vals = (np.array(infiled.read().split())).astype(float)
 nentries = len(vals)
 ncols = 3
@@ -31,7 +31,7 @@ df_th_avg = (df_th_hi + df_th_lo) / 2
 
 
 # flat-flat
-infiled = open("log10binning_GPU_10k_flat_flat_arcmin.dat")
+infiled = open("C:\Users\Alyssa\Documents\GitHub\Siena_College_Alyssa_Endres\data\log10binning_GPU_10k_flat_flat_arcmin.dat")
 vals = (np.array(infiled.read().split())).astype(float)
 nentries = len(vals)
 ncols = 3
