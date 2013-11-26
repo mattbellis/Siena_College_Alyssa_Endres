@@ -11,13 +11,16 @@ from matplotlib import pyplot
 
 for i in range (0,26):
 
-    tag = "0000 + i"
+    print i
 
-    name = "/data/log10binning_GPU_%s_data_data_arcmin.dat" % (tag)
+    dirname = './'
+    tag = "%04d" % (i)
+
+    name = "%s/log10binning_GPU_%s_data_data_arcmin.dat" % (dirname,tag)
     infiledd = open(name)
-    name = "/data/log10binning_GPU_%s_data_flat_arcmin.dat" % (tag)
+    name = "%s/log10binning_GPU_%s_data_flat_arcmin.dat" % (dirname,tag)
     infiledf = open(name)
-    name = "/data/log10binning_GPU_%s_flat_flat_arcmin.dat" % (tag)
+    name = "%s/log10binning_GPU_%s_flat_flat_arcmin.dat" % (dirname,tag)
     infileff = open(name)
 
 
@@ -71,9 +74,10 @@ for i in range (0,26):
     plt.figure()
     plt.plot(dd_th_avg,W,'ko')
     pyplot.xscale('log')
-    pyplot.ylim(0.0,0.005)
+    pyplot.yscale('log')
+    pyplot.ylim(0.001,20)
     plt.xlabel("arcseconds")
-    plt.ylabel("w (theta)")
+    plt.ylabel(r"w ($\theta$)")
     plt.title("W %s" % (tag))
     plt.savefig('log10binning_GPU_%s_W.png'  % (tag) , bbox_inches='tight')
     
