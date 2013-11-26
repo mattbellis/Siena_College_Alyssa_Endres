@@ -13,11 +13,11 @@ for i in range (0,26):
 
     tag = "0000 + i"
 
-    name = "log10binning_GPU_%s_data_data_arcmin.dat" % (tag)
+    name = "/data/log10binning_GPU_%s_data_data_arcmin.dat" % (tag)
     infiledd = open(name)
-    name = "log10binning_GPU_%s_data_flat_arcmin.dat" % (tag)
+    name = "/data/log10binning_GPU_%s_data_flat_arcmin.dat" % (tag)
     infiledf = open(name)
-    name = "log10binning_GPU_%s_flat_flat_arcmin.dat" % (tag)
+    name = "/data/log10binning_GPU_%s_flat_flat_arcmin.dat" % (tag)
     infileff = open(name)
 
 
@@ -68,8 +68,13 @@ for i in range (0,26):
     #print W
     
     
-#    plt.figure()
-#    plt.plot(dd_th_avg,W,'ko')
-#    pyplot.xscale('log')
-#    pyplot.ylim(0.0,0.005)
-#    plt.show()
+    plt.figure()
+    plt.plot(dd_th_avg,W,'ko')
+    pyplot.xscale('log')
+    pyplot.ylim(0.0,0.005)
+    plt.xlabel("arcseconds")
+    plt.ylabel("w (theta)")
+    plt.title("W %s" % (tag))
+    plt.savefig('log10binning_GPU_%s_W.png'  % (tag) , bbox_inches='tight')
+    
+    #plt.show()
