@@ -8,6 +8,8 @@ from matplotlib import pyplot
 #infileff = open("../data/log10binning_GPU_10k_flat_flat_arcmin.dat")
 #infiledf = open("../data/log10binning_GPU_10k_data_flat_arcmin.dat")
 
+
+
 tag = "0010"
 name = "log10binning_GPU_%s_data_data_arcmin.dat" % (tag)
 infiledd = open(name)
