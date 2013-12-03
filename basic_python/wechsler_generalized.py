@@ -31,30 +31,36 @@ for i in range(0,nslices):
 
     print "nslices: ",i,nslices
     
-    fig = plt.figure()
+    fig = plt.figure(figsize=(1.618*5,5),dpi=100)
     ax = fig.add_subplot(1,1,1)
 
+    fig.subplots_adjust(top=0.95,bottom=0.15,right=0.99,left=0.15)
 
-    ax.hist (z, bins=nslices, range=(z_min,z_max))
+    ax.hist (z, bins=nslices, range=(z_min,z_max),histtype='stepfilled')
     #ax.set_title ("range of z")
 
     cut_index0 = z>z_min + i*z_width
     cut_index1 = z<z_min + i*z_width + 0.03
-    ax.hist(z[cut_index0*cut_index1],bins=nslices,range=(z_min,z_max))
+    ax.hist(z[cut_index0*cut_index1],bins=nslices,range=(z_min,z_max),histtype='stepfilled')
 
     title = "z=%4.2f-%4.2f" % (z_min + i*z_width,z_min + (i+1)*z_width)
     ax.set_title(title)
+    ax.set_ylabel("# galaxies")
     ax.set_xlabel("z (redshift)")
+    ax.set_xlim(0,0.35)
     #plt.show()
 
-    rdum = r[cut_index0*cut_index1]
-    ddum = d[cut_index0*cut_index1]
+    #rdum = r[cut_index0*cut_index1]
+    #ddum = d[cut_index0*cut_index1]
 
-    filename = "galaxy_slices/output_wechsler_%04d.dat" % (i)
+    #filename = "galaxy_slices/output_wechsler_%04d.dat" % (i)
 
-    output=open(filename,'w')
-    output.write('%d\n'%(len(rdum)))
+    #output=open(filename,'w')
+    #output.write('%d\n'%(len(rdum)))
 
-    for ir,idec in zip(rdum,ddum):
-        output.write('%6.5e %6.5e\n'%(ir,idec))
-    output.close()
+    #for ir,idec in zip(rdum,ddum):
+        #output.write('%6.5e %6.5e\n'%(ir,idec))
+    #output.close()
+
+    name = "Plots/zslice_hist_%04d.png" % (i)
+    fig.savefig(name)

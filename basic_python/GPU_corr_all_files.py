@@ -13,7 +13,8 @@ for i in range (0,26):
 
     print i
 
-    dirname = './'
+    #dirname = './'
+    dirname = '../data/'
     tag = "%04d" % (i)
 
     name = "%s/log10binning_GPU_%s_data_data_arcmin.dat" % (dirname,tag)

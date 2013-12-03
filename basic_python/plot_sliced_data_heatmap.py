@@ -57,6 +57,10 @@ print ra[0:5]
 print dec[0:5]
 print "\n"
 
+# Convert arcseconds back to degrees
+ra /= 3600.0
+dec /= 3600.0
+
 theta = np.deg2rad(ra)
 phi = np.deg2rad(90-dec)
 
@@ -65,8 +69,9 @@ y = np.cos(phi)
 #z = radius*np.sin(phi)
 
 # Plotting RA vs. Dec
-fig = plt.figure()
-ax = plt.subplot(1,1,1)
+fig = plt.figure(figsize=(1.618*5,5),dpi=(100))
+ax = fig.add_subplot(1,1,1)
+fig.subplots_adjust(top=0.95,bottom=0.15,right=0.99,left=0.05)
 #ax = plt.subplot(111,polar=True)
 #ax = fig.add_axes([0.1, -0.75, 0.8, 1.6], projection='polar')
 #ax = fig.add_axes([0.1, -0.75, 0.8, 1.6])
@@ -76,18 +81,22 @@ heatmap, xedges, yedges = np.histogram2d(x, y, bins=500)
 #heatmap, xedges, yedges = np.histogram2d(x, y, bins=100)
 extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
+print "EXTENT:" 
+print extent
+
 heatmap = np.log10(heatmap)
 
-plt.clf()
+#plt.clf()
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.winter)
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.autumn)
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.bone)
-plt.imshow(heatmap,extent=extent,cmap=plt.cm.jet)
+ax.imshow(heatmap,extent=extent,cmap=plt.cm.jet)
 
 # Draw plot
 ax.set_title('RA v. Dec for slices of Z')
 ax.set_xlabel('Right Ascension')
 ax.set_ylabel('Declination')
+
 
 # Save plot file
 name = "Plots/slice_%04d.png" % (tag)

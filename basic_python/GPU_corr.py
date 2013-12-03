@@ -10,7 +10,7 @@ from matplotlib import pyplot
 
 
 
-tag = "0010"
+tag = "0025"
 name = "log10binning_GPU_%s_data_data_arcmin.dat" % (tag)
 infiledd = open(name)
 name = "log10binning_GPU_%s_data_flat_arcmin.dat" % (tag)
@@ -69,5 +69,5 @@ print W
 plt.figure()
 plt.plot(dd_th_avg,W,'ko')
 pyplot.xscale('log')
-pyplot.ylim(0.0,0.005)
+pyplot.ylim(0.0,20)
 plt.show()
