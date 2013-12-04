@@ -9,9 +9,49 @@ from matplotlib import pyplot
 #infiledf = open("../data/log10binning_GPU_10k_data_flat_arcmin.dat")
 
 
-for i in range (0,26):
+#################### total number of calculations on GPU
+infile_num_calc = open("../data/num_calculations.txt")
 
-    print i
+vals = (np.array(infile_num_calc.read().split())).astype(float)
+nentries = len(vals)
+ncols = 1
+index = np.arange(0,nentries,1)
+count_calc = vals[index]
+
+num_calculations = sum(count_calc)
+# print num_calculations
+# 3.10748804901e+13
+
+###################### number of data galaxies
+infile_num_data = open("../data/numbers_of_data_galaxies.txt")
+
+vals = (np.array(infile_num_data.read().split())).astype(float)
+nentries = len(vals)
+ncols = 1
+index = np.arange(0,nentries,1)
+count_data = vals[index] - 1
+
+###################### number of flat galaxies
+infile_num_flat = open("../data/numbers_of_flat_galaxies.txt")
+
+vals = (np.array(infile_num_flat.read().split())).astype(float)
+nentries = len(vals)
+ncols = 1
+index = np.arange(0,nentries,1)
+count_flat = vals[index]
+
+
+
+######################### calculate 2 pt corr function
+for i in range (0,33):
+
+    #print i
+
+
+    N_dd = (count_data[i]**2.0 - count_data[i]) / 2.0
+    N_ff = (count_flat[i]**2.0 - count_flat[i]) / 2.0
+    N_df = count_data[i] * count_flat[i]
+
 
     #dirname = './'
     dirname = '../data/'
@@ -32,9 +72,9 @@ for i in range (0,26):
     index = np.arange(0,nentries,3)
     dd_th_hi = vals[index]
     dd_th_lo = vals[index+1]
-    dd = vals[index+2]
+    dd = vals[index+2] / N_dd
     
-    dd /= sum(dd)
+    ##dd /= sum(dd)
 
     dd_th_avg = (dd_th_hi + dd_th_lo) / 2
 
@@ -46,9 +86,9 @@ for i in range (0,26):
     index = np.arange(0,nentries,3)
     df_th_hi = vals[index]
     df_th_lo = vals[index+1]
-    df = vals[index+2]
+    df = vals[index+2] / float(N_df)
     
-    df /= sum(df)
+    ##df /= sum(df)
     
     df_th_avg = (df_th_hi + df_th_lo) / 2
     
@@ -60,9 +100,9 @@ for i in range (0,26):
     index = np.arange(0,nentries,3)
     ff_th_hi = vals[index]
     ff_th_lo = vals[index+1]
-    ff = vals[index+2]
+    ff = vals[index+2] / N_ff
     
-    ff /= sum(ff)
+    ##ff /= sum(ff)
     
     ff_th_avg = (ff_th_hi + ff_th_lo) / 2
     
@@ -76,10 +116,8 @@ for i in range (0,26):
     plt.plot(dd_th_avg,W,'ko')
     pyplot.xscale('log')
     pyplot.yscale('log')
-    pyplot.ylim(0.001,20)
+    pyplot.ylim(0.001,1000)
     plt.xlabel("arcseconds")
     plt.ylabel(r"w ($\theta$)")
     plt.title("W %s" % (tag))
-    plt.savefig('log10binning_GPU_%s_W.png'  % (tag) , bbox_inches='tight')
-    
-    #plt.show()
+    plt.savefig('../data/log10binning_GPU_%s_W.png'  % (tag) , bbox_inches='tight')
