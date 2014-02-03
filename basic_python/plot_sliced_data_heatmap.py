@@ -81,16 +81,27 @@ heatmap, xedges, yedges = np.histogram2d(x, y, bins=500)
 #heatmap, xedges, yedges = np.histogram2d(x, y, bins=100)
 extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
-print "EXTENT:" 
-print extent
+#print heatmap
+#print xedges
+#print yedges
+
+#exit()
+
+#print "EXTENT:" 
+#print extent
 
 heatmap = np.log10(heatmap)
+
+print type(heatmap)
+print max(map(max,heatmap))
 
 #plt.clf()
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.winter)
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.autumn)
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.bone)
-ax.imshow(heatmap,extent=extent,cmap=plt.cm.jet)
+ax.imshow(heatmap,extent=extent,cmap=plt.cm.jet,vmin=0,vmax=2.8) # log10 binning
+#ax.imshow(heatmap,extent=extent,cmap=plt.cm.Dark2,vmin=0,vmax=2.8) # log10 binning
+#ax.imshow(heatmap,extent=extent,cmap=plt.cm.jet,vmin=0,vmax=1000) # normal binning
 
 # Draw plot
 ax.set_title('RA v. Dec for slices of Z')
