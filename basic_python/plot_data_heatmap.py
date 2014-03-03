@@ -77,9 +77,13 @@ index = range(start,stop)
 #y = radius*np.sin(theta)*np.cos(phi)
 #z = radius*np.sin(phi)
 
-radius = z[index].copy()
-theta = np.deg2rad(ra[index])
-phi = np.deg2rad(90-dec[index])
+#radius = z[index].copy()
+#theta = np.deg2rad(ra[index])
+#phi = np.deg2rad(90-dec[index])
+
+radius = z.copy()
+theta = np.deg2rad(ra)
+phi = np.deg2rad(90-dec)
 
 x = theta
 y = np.cos(phi)

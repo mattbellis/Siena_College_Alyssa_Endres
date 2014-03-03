@@ -26,33 +26,33 @@ z_width = 0.01
 z_step = 0.005
 
 z_min = 0.0
-z_max = 0.5
+z_max = 1.4
 
 nslices = int((z_max-z_min)/z_step)
 
 #for i in range(0,nslices):
-for i in range(0,1):
+for i in range(0,140):
 
     print "nslices: ",i,nslices
     
     fig = plt.figure(figsize=(1.618*5,5),dpi=100)
     ax = fig.add_subplot(1,1,1)
 
-    fig.subplots_adjust(top=0.95,bottom=0.15,right=0.99,left=0.15)
+    fig.subplots_adjust(top=0.95,bottom=0.15,right=0.95,left=0.15)
 
-    ax.hist (z, bins=nslices, range=(z_min,z_max),histtype='stepfilled',weight=n)
+    ax.hist (z, bins=nslices, range=(z_min,z_max),histtype='stepfilled',weights=n)
     #ax.set_title ("range of z")
 
     cut_index0 = z>z_min + i*z_step
     cut_index1 = z<z_min + i*z_step + z_width
-    ax.hist(z[cut_index0*cut_index1],bins=nslices,range=(z_min,z_max),histtype='stepfilled')
+    ax.hist(z[cut_index0*cut_index1],bins=nslices,range=(z_min,z_max),histtype='stepfilled',weights=n[cut_index0*cut_index1],color='yellow')
 
-    title = "z=%4.2f-%4.2f" % (z_min + i*z_width,z_min + (i+1)*z_width)
+    title = "z=%4.3f-%4.3f" % (z_min + i*z_step,z_min + i*z_step + z_width)
     ax.set_title(title)
     ax.set_ylabel("# galaxies")
     ax.set_xlabel("z (redshift)")
-    ax.set_xlim(0,0.35)
-    plt.show()
+    #ax.set_xlim(0,0.35)
+    #plt.show()
 
     #rdum = r[cut_index0*cut_index1]
     #ddum = d[cut_index0*cut_index1]

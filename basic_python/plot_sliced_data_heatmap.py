@@ -77,8 +77,8 @@ fig.subplots_adjust(top=0.95,bottom=0.15,right=0.99,left=0.05)
 #ax = fig.add_axes([0.1, -0.75, 0.8, 1.6])
 
 # Heat map
-heatmap, xedges, yedges = np.histogram2d(x, y, bins=500)
-#heatmap, xedges, yedges = np.histogram2d(x, y, bins=100)
+heatmap, xedges, yedges = np.histogram2d(x, y, bins=700)
+#heatmap, xedges, yedges = np.histogram2d(x, y, bins=200)
 extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
 #print heatmap
@@ -97,7 +97,7 @@ print max(map(max,heatmap))
 
 #plt.clf()
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.winter)
-#plt.imshow(heatmap,extent=extent,cmap=plt.cm.autumn)
+#plt.imshow(heatmap,extent=extent,cmap=plt.cm.autumn,vmin=0.01,vmax=2.5)
 #plt.imshow(heatmap,extent=extent,cmap=plt.cm.bone)
 ax.imshow(heatmap,extent=extent,cmap=plt.cm.jet,vmin=0,vmax=2.8) # log10 binning
 #ax.imshow(heatmap,extent=extent,cmap=plt.cm.Dark2,vmin=0,vmax=2.8) # log10 binning
