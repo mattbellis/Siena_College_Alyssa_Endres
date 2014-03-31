@@ -122,7 +122,7 @@ for j,state in enumerate(states):
         plt.title("2pt correlation function for states")
 
 plt.subplots_adjust(left=0.10,right=0.99,bottom=0.10)
-plt.savefig('Plots/state_2pt.png')
 plt.legend(prop={'size':40})
+plt.savefig('Plots/state_2pt.png')
 
 plt.show()
