@@ -51,6 +51,8 @@ for i in range(0,140):
     ax.set_title(title)
     ax.set_ylabel("# galaxies")
     ax.set_xlabel("z (redshift)")
+    ax.set_ylim(0,1000000)
+    ax.set_xlim(0,0.75)
     #ax.set_xlim(0,0.35)
     #plt.show()
 
@@ -66,5 +68,5 @@ for i in range(0,140):
         #output.write('%6.5e %6.5e\n'%(ir,idec))
     #output.close()
 
-    name = "Plots/mice_zslice_hist_%04d.png" % (i)
+    name = "Plots/zplots/mice_zslice_hist_%04d.png" % (i)
     fig.savefig(name)

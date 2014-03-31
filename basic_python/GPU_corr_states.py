@@ -20,8 +20,8 @@ tag = "1Mdata"
 #bintype = "norm"
 #binwidth = "2k"
 bintype = "norm"
-binwidth = "200"
-#binwidth = "2k"
+#binwidth = "200"
+binwidth = "2k"
 
 #infiledd = open("../data/log10binning_GPU_10k_data_data_arcmin.dat")
 #infileff = open("../data/log10binning_GPU_10k_flat_flat_arcmin.dat")
@@ -141,7 +141,7 @@ for i in range (0,1):
     
     plt.figure()
     plt.plot(dd_th_avg,W,'ko')
-    pyplot.xscale('log')
+    #pyplot.xscale('log')
     pyplot.yscale('log')
     pyplot.ylim(0.10)
     #pyplot.ylim(7.00,100000)
