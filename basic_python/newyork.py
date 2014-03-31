@@ -10,8 +10,16 @@ from numpy import random
 
 #infile = open("../data/ny_boundaries.txt")
 #infile = open("../data/newyork_borders.txt")
+#infile = open("../data/newyork_borders2.txt")
 #infile = open("../data/texas_border.txt")
-infile = open("../data/wyoming_border.txt")
+#infile = open("../data/wyoming_border.txt")
+#infile = open("../data/georgia_border.txt")
+
+#infile = open("../data/border_ga_m.txt")
+#infile = open("../data/border_ny_m.txt")
+#infile = open("../data/border_tx_m.txt")
+infile = open("../data/border_wy_m.txt")
+
 #latitude, longitude
 
 vals = (np.array(infile.read().split())).astype(float)
@@ -21,7 +29,16 @@ index = np.arange(0,nentries,2)
 lat = vals[index]
 lon = vals[index+1]
 
-plt.plot(lon,lat,'k.',markersize=10)
+plt.figure()
+plt.plot(lon,lat,'k.-',markersize=15)
+
+
+#plt.plot(lon[0:-7],lat[0:-7],'k.-',markersize=15)
+#plt.plot(lon[-1],lat[-1],'r.-',markersize=10)
+#plt.plot(lon[-1],lat[-1],'b.',markersize=10)
+
+
+
 
 xmin = min(lon) 
 xmax = max(lon)
@@ -38,7 +55,7 @@ ymax = max(lat)
 
 #random.uniform(a,b) -> range
 
-npts = 1000
+npts = 1100000
 xpts = random.uniform(xmin,xmax,npts)
 ypts = random.uniform(ymin,ymax,npts)
 
@@ -86,9 +103,14 @@ for x,y in zip(xpts,ypts):
     else:
         rejpts[0].append(x)
         rejpts[1].append(y)
+
+np.savetxt('accepted_points_wy.txt', np.transpose(accpts), delimiter=" ", fmt="%s") 
+print len(accpts[0])
         
 #plt.figure()
 plt.plot(accpts[0],accpts[1],'ro',markersize=4)
 plt.plot(rejpts[0],rejpts[1],'bo',markersize=4)
 plt.xlim(xmin,xmax)
 plt.ylim(ymin,ymax)
+
+

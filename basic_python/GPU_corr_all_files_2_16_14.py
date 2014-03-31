@@ -45,7 +45,7 @@ count_flat = count_flat.astype(float)
 
 ######################### calculate 2 pt corr function
 #for i in range (0,33):
-for i in range (33,133):
+for i in range (134,143):
     #print i
 
 
